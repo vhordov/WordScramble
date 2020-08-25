@@ -9,8 +9,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    let players = ["Vova", "Vadya", "Dima", "Ilya"]
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            List {
+                Section(header: Text("Section 1")) {
+                    Text("Hello world now!")
+                }
+                Section(header: Text("Section 2")) {
+                    ForEach(0..<5) {
+                        Text("Hello, World \($0)")
+                    }
+                }
+                Section(header: Text("Section 3")) {
+                    Text("Hello world after!")
+                }
+            }
+            .listStyle(GroupedListStyle())
+            List(players, id: \.self) {
+                Text($0)
+            }
+            List {
+                Section(header: Text("Players")) {
+                    ForEach(players, id: \.self) {
+                        Text($0)
+                    }
+                }
+            }
+            .listStyle(GroupedListStyle())
+        }
     }
 }
 
